@@ -3,7 +3,7 @@ import React from 'react';
 const ViewPostDetails = ({ post }) => {
   // console.log('ViewPostDetails component stuff');
   return (
-    <div>
+    <div id='postdetails'>
       <h2>{post.title}</h2>
       <p>Description: {post.description}</p>
       <p>Price: {post.price}</p>

@@ -25,7 +25,7 @@ function ViewPosts() {
   };
 
   return (
-    <div className="App">
+    <div className="posts">
       <h1>Posts</h1>
       <ol>
         {posts.map(post => (
