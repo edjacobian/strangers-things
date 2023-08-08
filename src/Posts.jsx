@@ -22,11 +22,14 @@ function ViewPosts() {
   }, []);
 
   const handlePostClick = (post) => {
+    // console.log('Clicked post:', post);
+
     setSelectedPost(post);
   };
 
   const handleDeleteClick = async (postId) => {
     try {
+      // console.log('Deleting post:', postId);
       const response = await fetch(`${API_URL}/posts/${postId}`, {
         method: 'DELETE',
         headers: {

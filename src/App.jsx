@@ -1,11 +1,13 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import ViewPosts from './ViewPosts';
+import ViewPosts from './Posts';
 import Home from './Home';
 import AddPost from './AddPost.jsx'
+import Register from './Register';
 
 function App() {
+  // console.log('Hello there!');
   
   return (
     <>
@@ -14,6 +16,9 @@ function App() {
       <div id="navbar">
         <Link to="/">
           Home
+        </Link>
+        <Link to="/register">
+          Register
         </Link>
         <Link to="/viewposts">
           View Posts
@@ -25,6 +30,7 @@ function App() {
       <div id="main-section">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/viewposts" element={<ViewPosts />} />
           <Route path="/addpost" element={<AddPost />} />
         </Routes>
