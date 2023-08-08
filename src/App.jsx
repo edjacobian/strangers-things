@@ -1,34 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-
-// Create variables for API_URL
-const COHORT_NAME = '2306-FSA-ET-WEB-FT-SF';
-const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
+import ViewPosts from './ViewPosts';
 
 function App() {
-  const [posts, setPosts] = useState([]);
-// Fetch (GET) data from the API
-  useEffect(() => {
-    fetch(`${API_URL}/posts`)
-      .then(response => response.json())
-      .then(data => {
-        setPosts(data.data.posts);
-        // console.log(data.data.posts);
-      })
-      .catch(error => {
-        console.error('Error getting posts', error);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <h1>Posts</h1>
-      <ul>
-        {posts.map(post => (
-          <li key={post._id}>{post.title}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="App">
+        {/* Navigation bar */}
+        <nav>
+          <ul>
+            <li>
+              <Link to="./ViewPosts">View Posts</Link>
+            </li>
+          </ul>
+        </nav>
+        <h2>Welcome To</h2>
+        <h1>Stranger's Things Marketplace</h1>
+        <Routes>
+          <Route path="/viewposts" element={<ViewPosts />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
