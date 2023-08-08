@@ -28,7 +28,6 @@ function Register() {
 
       if (data.success) {
         console.log('Registration successful');
-        // You can redirect the user to another page here
       } else {
         console.error('Registration failed:', data.error.message);
       }

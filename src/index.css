@@ -69,3 +69,7 @@ body > div {
 #register {
   background-color: darkgoldenrod;
 }
+
+#login {
+  background-color: maroon;
+}

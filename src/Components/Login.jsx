@@ -6,19 +6,30 @@ function Login({ onTokenChange }) {
 
   const handleLogin = async () => {
     try {
-      // Here, you would perform the actual login API call
-      // For demonstration purposes, let's assume a successful login
-      const fakeToken = 'fake-access-token';
+      // Perform the login API call
+      const response = await fetch('https://strangers-things.herokuapp.com/api/2306-FSA-ET-WEB-FT-SF/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-      // Call the parent component's callback to update the token
-      onTokenChange(fakeToken);
+      if (response.ok) {
+        // API call succeeded, response JSON
+        const data = await response.json();
+        const accessToken = data.access_token;
+        onTokenChange(accessToken);
+      } else {
+        console.error('Login failed');
+      }
     } catch (error) {
       console.error('Error logging in', error);
     }
   };
 
   return (
-    <div>
+    <div id='login'>
       <h2>Login</h2>
       <div>
         <label>

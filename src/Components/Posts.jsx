@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ViewPostDetails from '../ViewPostDetails';
+import ViewPostDetails from './ViewPostDetails';
 import DeleteButton from './DeleteButton';
 
 const COHORT_NAME = '2306-FSA-ET-WEB-FT-SF';
