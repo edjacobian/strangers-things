@@ -31,8 +31,8 @@ const AddPost = ({ token }) => {
       const responseData = await response.json();
 
       if (responseData.success) {
-        console.log('Post added:', responseData.data.post);
-        // Clear the form fields
+        // console.log('Post added:', responseData.data.post);
+        // Clear the form
         setTitle('');
         setDescription('');
         setPrice('');
@@ -45,7 +45,7 @@ const AddPost = ({ token }) => {
   };
 
   return (
-    <div>
+    <div id='add-post'>
       <h2>Add a New Post</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -65,7 +65,8 @@ const AddPost = ({ token }) => {
           <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
         </div>
         <div>
-          <label>Will Deliver:</label>
+          <label>Will Deliver:</label> 
+          {/* toggle switch? */}
           <input type="checkbox" checked={willDeliver} onChange={(e) => setWillDeliver(e.target.checked)} />
         </div>
         <button type="submit">Add Post</button>

@@ -52,11 +52,16 @@ body > div {
 }
 
 #navbar {
-  padding: 2em;
   justify-content: space-evenly;
+  font-size: x-large;
+  padding-bottom: 20px;
 }
 
 #postdetails {
   background-color: teal;
   color: white;
+}
+
+#add-post {
+  background-color: beige;
 }
