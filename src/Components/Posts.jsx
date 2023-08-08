@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ViewPostDetails from './ViewPostDetails';
-import DeleteButton from './DeleteButton'; // Import the DeleteButton component
+import ViewPostDetails from '../ViewPostDetails';
+import DeleteButton from './DeleteButton';
 
 const COHORT_NAME = '2306-FSA-ET-WEB-FT-SF';
 const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
-function ViewPosts() {
+function Posts({ token }) {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_URL}/posts`)
+    fetch(`${API_URL}/posts`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then(response => response.json())
       .then(data => {
         setPosts(data.data.posts);
@@ -19,29 +23,25 @@ function ViewPosts() {
       .catch(error => {
         console.error('Error getting posts', error);
       });
-  }, []);
+  }, [token]);
 
   const handlePostClick = (post) => {
-    // console.log('Clicked post:', post);
-
     setSelectedPost(post);
   };
 
   const handleDeleteClick = async (postId) => {
     try {
-      // console.log('Deleting post:', postId);
       const response = await fetch(`${API_URL}/posts/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer YOUR_ACCESS_TOKEN`, // Replace with your access token
+          Authorization: `Bearer ${token}`,
         },
       });
 
       if (response.ok) {
-        // Remove the deleted post from the list
         setPosts(posts.filter(post => post._id !== postId));
-        setSelectedPost(null); // Clear selected post details
+        setSelectedPost(null);
       } else {
         console.error('Error deleting post');
       }
@@ -73,4 +73,4 @@ function ViewPosts() {
   );
 }
 
-export default ViewPosts;
+export default Posts;
